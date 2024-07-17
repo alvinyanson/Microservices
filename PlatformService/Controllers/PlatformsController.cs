@@ -24,11 +24,26 @@ namespace PlatformService.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<PlatformReadDto>> GetPlatforms()
         {
-            Console.WriteLine("--> Getting Platforms...");
+            Console.WriteLine("Getting Platforms...");
 
             var platformItems = _repo.GetAllPlatforms();
 
             return Ok(_mapper.Map<IEnumerable<PlatformReadDto>>(platformItems));
+        }
+
+        [HttpGet("{id}", Name = "GetPlatformById")]
+        public ActionResult<PlatformReadDto> GetPlatformById(int id)
+        {
+            Console.WriteLine("Getting platform by Id");
+
+            var platformItem = _repo.GetPlatformById(id);
+
+            if(platformItem != null)
+            {
+                return Ok(_mapper.Map<PlatformReadDto>(platformItem));
+            }
+
+            return NotFound();
         }
     }
 }
