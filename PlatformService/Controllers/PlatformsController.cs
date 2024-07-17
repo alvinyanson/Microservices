@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PlatformService.Data;
 using PlatformService.Dtos;
+using PlatformService.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -38,12 +39,25 @@ namespace PlatformService.Controllers
 
             var platformItem = _repo.GetPlatformById(id);
 
-            if(platformItem != null)
+            if (platformItem != null)
             {
                 return Ok(_mapper.Map<PlatformReadDto>(platformItem));
             }
 
             return NotFound();
+        }
+
+        [HttpPost]
+        public ActionResult<PlatformReadDto> CreatePlatform(PlatformCreateDto platformCreateDto)
+        {
+            var platformModel = _mapper.Map<Platform>(platformCreateDto);
+
+            _repo.CreatePlatform(platformModel);
+            _repo.SaveChanges();
+
+            var platformReadDto = _mapper.Map<PlatformReadDto>(platformModel);
+
+            return CreatedAtRoute(nameof(GetPlatformById), new { Id = platformReadDto.Id }, platformReadDto);
         }
     }
 }
