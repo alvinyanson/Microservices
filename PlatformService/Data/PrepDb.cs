@@ -22,7 +22,7 @@ namespace PlatformService.Data
             {
                 Console.WriteLine("Seeding data...");
 
-                context.AddRange(
+                context.Platforms.AddRange(
                     new Platform() { Name = "Dot Net", Publisher = "Microsoft", Cost = "Free"},
                     new Platform() { Name = "Sql Server Database", Publisher = "Microsoft", Cost = "Free" },
                     new Platform() { Name = "Kubernetes", Publisher = "Cloud Native Computing Foundation", Cost = "Free" }
