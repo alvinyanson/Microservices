@@ -80,7 +80,7 @@ namespace PlatformService
             });
 
 
-            PrepDb.PrepPopulation(app);
+            PrepDb.PrepPopulation(app, env.IsProduction());
         }
     }
 }
