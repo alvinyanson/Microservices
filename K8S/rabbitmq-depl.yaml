@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rabbitmq-depl
@@ -55,4 +55,4 @@ spec:
   - name: rbmq-msg-port
     protocol: TCP
     port: 5672
-
+    targetPort: 5672
