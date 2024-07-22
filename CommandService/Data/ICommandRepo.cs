@@ -13,6 +13,7 @@ namespace CommandService.Data
         void CreatePlatform(Platform platform);
 
         bool PlatformExist(int platformId);
+        bool ExternalPlatformExists(int externalPlatformId);
 
 
         // Commands
